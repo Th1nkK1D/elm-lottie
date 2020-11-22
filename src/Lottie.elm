@@ -1,15 +1,15 @@
-module Lottie exposing (lottie, path, loop, play)
+module Lottie exposing (lottie, loop, play)
 
 import Html exposing (Html, node, Attribute)
 import Html.Attributes exposing (attribute)
 import List
 
-lottie : List (Attribute msg) -> List (Html msg) -> Html msg
-lottie = node "elm-lottie"
-
-
-path : String -> Attribute msg
-path value = attribute "data-path" value
+lottie : String -> List (Attribute msg) -> List (Html msg) -> Html msg
+lottie path attributes =
+   let
+      combindedAttributes = attributes ++ [ attribute "data-path" path ]
+   in
+   node "elm-lottie" combindedAttributes
 
 loop : Bool -> Attribute msg
 loop value = attribute "data-loop" (parseBoolToString value)
