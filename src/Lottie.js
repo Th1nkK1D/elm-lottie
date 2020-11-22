@@ -1,22 +1,17 @@
+import data from "../example/animation.json";
+
 class Lottie extends HTMLElement {
   constructor() {
     super();
   }
 
   connectedCallback() {
-    this.setTextContent();
-  }
-
-  attributeChangedCallback() {
-    this.setTextContent();
-  }
-
-  static get observedAttributes() {
-    return [];
-  }
-
-  setTextContent() {
-    this.textContent = "Lottie custom HTML";
+    bodymovin.loadAnimation({
+      container: this,
+      animationData: data,
+      loop: true,
+      autoplay: true,
+    });
   }
 }
 
