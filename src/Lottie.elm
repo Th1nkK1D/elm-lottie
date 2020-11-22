@@ -17,18 +17,25 @@ type Loop = Once | Forever | Amount Int
 
 loop : Loop -> Attribute msg
 loop loopValue =
-   case loopValue of
-      Once ->
-         attribute "data-loop" "false"
-      Forever ->
-         attribute "data-loop" "true"
-      Amount amount ->
-         String.fromInt amount |> attribute "data-loop"
+   loopValue
+   |> (\ value -> 
+      case value of
+         Once ->
+            "false"
+         Forever ->
+            "true"
+         Amount amount ->
+            String.fromInt amount
+      )
+   |> attribute "data-loop"
 
 play : Bool -> Attribute msg
-play value = 
-   if value then
-      attribute "data-play" "true"
-   else
-      attribute "data-play" "false"
-      
+play playValue = 
+   playValue
+   |> (\ value ->
+      if value then
+         "true"
+      else
+         "false"
+   )
+   |> attribute "data-play"

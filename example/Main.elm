@@ -35,11 +35,11 @@ view : Model -> Html Msg
 view { playing } = div [ style "text-align" "center"]
     [ h1 [] [ text "Elm-Lottie Demo" ]
     , lottie "/animation.json" [ loop Forever, play playing, style "height" "50vh"] []
-    , button [ onClick TogglePlay ] [ text (getButtonText playing) ]
+    , button [ onClick TogglePlay ] [ playing |> getButtonString |> text ]
     ]
 
-getButtonText : Bool -> String
-getButtonText playing =
+getButtonString : Bool -> String
+getButtonString playing =
     if playing then
         "Pause"
     else
