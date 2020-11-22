@@ -4,14 +4,28 @@ class Lottie extends HTMLElement {
   }
 
   connectedCallback() {
-    const { path } = this.dataset;
-
     bodymovin.loadAnimation({
       container: this,
-      path,
-      loop: true,
-      autoplay: true,
+      ...this.getParsedDataset(),
     });
+  }
+
+  getParsedDataset() {
+    return Object.entries(this.dataset).reduce(
+      (obj, [key, value]) => ({ ...obj, [key]: this.parseObjectValue(value) }),
+      {}
+    );
+  }
+
+  parseObjectValue(value) {
+    switch (value) {
+      case "true":
+        return true;
+      case "false":
+        return false;
+      default:
+        return value;
+    }
   }
 }
 

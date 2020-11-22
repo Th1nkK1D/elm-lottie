@@ -3,8 +3,7 @@ module Main exposing (Model, Msg(..), init, main, update, view)
 import Browser
 import Html exposing (Html)
 import Html.Attributes exposing (style)
-import Lottie exposing (lottie)
-
+import Lottie exposing (lottie, path, loop, autoplay)
 
 main : Program () Model Msg
 main =
@@ -32,4 +31,4 @@ update msg model =
 
 
 view : Model -> Html Msg
-view model = lottie { path = "/animation.json" } [ style "width" "100vw", style "height" "100vh"]
+view model = lottie [ path "/animation.json", loop True, autoplay True, style "width" "100vw", style "height" "100vh"] []
