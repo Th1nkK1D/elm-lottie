@@ -32,4 +32,4 @@ update msg model =
 
 
 view : Model -> Html Msg
-view model = lottie [ style "width" "100vw", style "height" "100vh"] []
+view model = lottie { path = "/animation.json" } [ style "width" "100vw", style "height" "100vh"]

@@ -1,14 +1,14 @@
-import data from "../example/animation.json";
-
 class Lottie extends HTMLElement {
   constructor() {
     super();
   }
 
   connectedCallback() {
+    const { path } = this.dataset;
+
     bodymovin.loadAnimation({
       container: this,
-      animationData: data,
+      path,
       loop: true,
       autoplay: true,
     });
