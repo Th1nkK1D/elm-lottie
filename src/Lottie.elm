@@ -1,4 +1,4 @@
-module Lottie exposing (lottie, path, loop, autoplay)
+module Lottie exposing (lottie, path, loop, play)
 
 import Html exposing (Html, node, Attribute)
 import Html.Attributes exposing (attribute)
@@ -14,8 +14,8 @@ path value = attribute "data-path" value
 loop : Bool -> Attribute msg
 loop value = attribute "data-loop" (parseBoolToString value)
 
-autoplay : Bool -> Attribute msg
-autoplay value = attribute "data-autoplay" (parseBoolToString value)
+play : Bool -> Attribute msg
+play value = attribute "data-play" (parseBoolToString value)
 
 
 parseBoolToString : Bool -> String

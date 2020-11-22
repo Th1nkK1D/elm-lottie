@@ -1,13 +1,38 @@
 class Lottie extends HTMLElement {
   constructor() {
     super();
+
+    this.animation = null;
   }
 
   connectedCallback() {
-    bodymovin.loadAnimation({
+    const { play, ...otherConfigs } = this.getParsedDataset();
+
+    this.animation = bodymovin.loadAnimation({
       container: this,
-      ...this.getParsedDataset(),
+      autoplay: play,
+      ...otherConfigs,
     });
+
+    this.style.display = "block";
+  }
+
+  static get observedAttributes() {
+    return ["data-play"];
+  }
+
+  attributeChangedCallback() {
+    if (!this.animation) {
+      return;
+    }
+
+    const { play } = this.getParsedDataset();
+
+    if (play) {
+      this.animation.play();
+    } else {
+      this.animation.pause();
+    }
   }
 
   getParsedDataset() {
