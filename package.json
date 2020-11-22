@@ -2,6 +2,9 @@
   "name": "elm-lottie",
   "version": "1.0.0",
   "license": "MIT",
+  "description": "[WIP] Lottie wrapper for Elm language",
+  "author": "Th1nkK1D <witheep@gmail.com>",
+  "repository": "https://github.com/Th1nkK1D/elm-lottie",
   "scripts": {
     "dev": "parcel example/index.html"
   },
