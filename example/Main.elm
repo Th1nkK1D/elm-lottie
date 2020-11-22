@@ -1,9 +1,9 @@
 module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Browser
-import Html exposing (Html, node)
-import Html.Events exposing (onClick)
+import Html exposing (Html)
 import Html.Attributes exposing (style)
+import Lottie exposing (lottie)
 
 
 main : Program () Model Msg
@@ -32,5 +32,4 @@ update msg model =
 
 
 view : Model -> Html Msg
-view model =
-    node "elm-lottie" [ style "width" "100vw", style "height" "100vh"] []
+view model = lottie [ style "width" "100vw", style "height" "100vh"] []
