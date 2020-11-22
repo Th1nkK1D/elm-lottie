@@ -1,8 +1,9 @@
-module Lottie exposing (lottie, loop, play)
+module Lottie exposing (lottie, loop, play, Loop(..))
 
 import Html exposing (Html, node, Attribute)
 import Html.Attributes exposing (attribute)
 import List
+
 
 lottie : String -> List (Attribute msg) -> List (Html msg) -> Html msg
 lottie path attributes =
@@ -11,17 +12,23 @@ lottie path attributes =
    in
    node "elm-lottie" combindedAttributes
 
-loop : Bool -> Attribute msg
-loop value = attribute "data-loop" (parseBoolToString value)
+
+type Loop = Once | Forever | Amount Int
+
+loop : Loop -> Attribute msg
+loop loopValue =
+   case loopValue of
+      Once ->
+         attribute "data-loop" "false"
+      Forever ->
+         attribute "data-loop" "true"
+      Amount amount ->
+         String.fromInt amount |> attribute "data-loop"
 
 play : Bool -> Attribute msg
-play value = attribute "data-play" (parseBoolToString value)
-
-
-parseBoolToString : Bool -> String
-parseBoolToString boolean =
-   if boolean then
-      "true"
+play value = 
+   if value then
+      attribute "data-play" "true"
    else
-      "false"
+      attribute "data-play" "false"
       

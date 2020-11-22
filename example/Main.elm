@@ -4,7 +4,7 @@ import Browser
 import Html exposing (Html, div, h1, text, button)
 import Html.Attributes exposing (style)
 import Html.Events exposing (onClick)
-import Lottie exposing (lottie, loop, play)
+import Lottie exposing (lottie, loop, play, Loop(..))
 
 main : Program () Model Msg
 main =
@@ -34,7 +34,7 @@ update msg model =
 view : Model -> Html Msg
 view { playing } = div [ style "text-align" "center"]
     [ h1 [] [ text "Elm-Lottie Demo" ]
-    , lottie "/animation.json" [ loop True, play playing, style "height" "50vh"] []
+    , lottie "/animation.json" [ loop Forever, play playing, style "height" "50vh"] []
     , button [ onClick TogglePlay ] [ text (getButtonText playing) ]
     ]
 
